@@ -5,13 +5,13 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const express = require('express')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const logger = require('morgan')
 const nocache = require('nocache')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
+// const MongoStore = require('connect-mongo')(session)
 
-require('./configs/database')
+// require('./configs/database')
 
 const app_name = require('./package.json').name
 const debug = require('debug')(
@@ -42,18 +42,18 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../client/build')))
 
 // Enable authentication using session + passport
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || 'irongenerator',
-    resave: true,
-    saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  })
-)
-require('./passport')(app)
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET || 'irongenerator',
+//     resave: true,
+//     saveUninitialized: true,
+//     store: new MongoStore({ mongooseConnection: mongoose.connection }),
+//   })
+// )
+// require('./passport')(app)
 
 app.use('/api', require('./routes/index'))
-app.use('/api', require('./routes/auth'))
+// app.use('/api', require('./routes/auth'))
 app.use('/api/covid', require('./routes/api/covid'))
 
 // For any routes that starts with "/api", catch 404 and forward to error handler
