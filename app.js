@@ -13,6 +13,7 @@ const debug = require('debug')(
 )
 
 const app = express()
+const cors = require('cors');
 const exphbs = require('express-handlebars')
 
 app.use(nocache())
@@ -20,6 +21,7 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(cors());
 
 // handlebars middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
